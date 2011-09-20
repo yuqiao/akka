@@ -6,6 +6,8 @@ import akka.cluster.storage._
 
 trait CoordinationClient {
 
+  type ToStorageException = PartialFunction[Exception, StorageException]
+
   def exists(path: String): Boolean
 
   def createPersistent(path: String, value: Array[Byte])
@@ -38,11 +40,11 @@ trait CoordinationClient {
   //def retryUntilConnected   ?
   def close()
 
-  def defaultStorageException: PartialFunction[Exception, StorageException] = {
+  def defaultStorageException: ToStorageException = {
     case underlying: Exception ⇒ new StorageException("Unexpected exception from the underlying storage impl", underlying)
   }
 
-  def handleWith[T](exFunk: PartialFunction[Exception, StorageException])(funk: ⇒ T): T = {
+  def handleWith[T](exFunk: ToStorageException)(funk: ⇒ T): T = {
     try {
       funk
     } catch {

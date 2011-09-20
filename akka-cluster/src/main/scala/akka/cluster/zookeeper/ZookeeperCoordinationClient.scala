@@ -108,29 +108,29 @@ class ZookeeperCoordinationClient(zkClient: AkkaZkClient) extends CoordinationCl
 
   /*Exception handling partial functions that map store specific exceptions to generic exceptions*/
 
-  private def deleteFailed(key: String): PartialFunction[Exception, StorageException] = {
+  private def deleteFailed(key: String): ToStorageException = {
     case e: Exception ⇒ CoordinationClient.deleteFailed(key, e)
   }
 
-  private def deleteRecursiveFailed(key: String): PartialFunction[Exception, StorageException] = {
+  private def deleteRecursiveFailed(key: String): ToStorageException = {
     case e: Exception ⇒ CoordinationClient.deleteRecursiveFailed(key, e)
   }
 
-  private def writeDataFailed(key: String): PartialFunction[Exception, StorageException] = {
+  private def writeDataFailed(key: String): ToStorageException = {
     case e: KeeperException.BadVersionException ⇒ CoordinationClient.writeDataFailedBadVersion(key, e)
     case e: KeeperException                     ⇒ CoordinationClient.writeDataFailed(key, e)
   }
 
-  private def readDataFailed(key: String): PartialFunction[Exception, StorageException] = {
+  private def readDataFailed(key: String): ToStorageException = {
     case e: KeeperException.NoNodeException ⇒ CoordinationClient.readDataFailedMissingData(key, e)
     case e: KeeperException                 ⇒ CoordinationClient.readDataFailed(key, e)
   }
 
-  private def existsFailed(key: String): PartialFunction[Exception, StorageException] = {
+  private def existsFailed(key: String): ToStorageException = {
     case e: KeeperException ⇒ CoordinationClient.existsFailed(key, e)
   }
 
-  private def createFailed(key: String): PartialFunction[Exception, StorageException] = {
+  private def createFailed(key: String): ToStorageException = {
     case e: KeeperException.NodeExistsException ⇒ CoordinationClient.createFailedDataExists(key, e)
     case e: KeeperException                     ⇒ CoordinationClient.createFailed(key, e)
   }
