@@ -3,10 +3,6 @@
 Fault Tolerance Through Supervisor Hierarchies (Java)
 =====================================================
 
-.. sidebar:: Contents
-
-   .. contents:: :local:
-
 Module stability: **SOLID**
 
 The "let it crash" approach to fault/error handling, implemented by linking actors, is very different to what Java and most non-concurrency oriented languages/frameworks have adopted. It’s a way of dealing with failure that is designed for concurrent and distributed systems.

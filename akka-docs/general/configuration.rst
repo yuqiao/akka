@@ -1,10 +1,6 @@
 Configuration
 =============
 
-.. sidebar:: Contents
-
-   .. contents:: :local:
-
 .. _-Dakka.config:
 .. _-Dakka.home:
 

@@ -4,10 +4,6 @@
 ZeroMQ
 ======
 
-.. sidebar:: Contents
-
-   .. contents:: :local:
-
 Module stability: **IN PROGRESS**
 
 Akka provides a ZeroMQ module which abstracts a ZeroMQ connection and therefore allows interaction between Akka actors to take place over ZeroMQ connections. The messages can be of a proprietary format or they can be defined using Protobuf. In addition, the connection can be fault-tolerant by associating a supervisor with a socket, and upon a connection failure, reconnection can take place automatically.

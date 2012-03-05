@@ -3,10 +3,6 @@
 Software Transactional Memory (Scala)
 =====================================
 
-.. sidebar:: Contents
-
-   .. contents:: :local:
-   
 Module stability: **SOLID**
 
 Overview of STM
@@ -532,4 +528,4 @@ This illustration is taken from Rich Hickey's presentation. Copyright Rich Hicke
 Ants simulation sample
 ----------------------
 
-One fun and very enlightening visual demo of STM, actors and transactional references is the `Ant simulation sample <http://github.com/jboner/akka/tree/master/akka-samples/akka-sample-ants/>`_. I encourage you to run it and read through the code since it's a good example of using actors with STM.
+One fun and very enlightening visual demo of STM, actors and transactional references is the `Ant simulation sample <http://github.com/akka/akka/tree/master/akka-samples/akka-sample-ants/>`_. I encourage you to run it and read through the code since it's a good example of using actors with STM.

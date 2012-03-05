@@ -1,10 +1,6 @@
 HTTP Security
 =============
 
-.. sidebar:: Contents
-
-   .. contents:: :local:
-
 Module stability: **IN PROGRESS**
 
 Akka supports security for access to RESTful Actors through `HTTP Authentication <http://en.wikipedia.org/wiki/HTTP_Authentication>`_. The security is implemented as a jersey ResourceFilter which delegates the actual authentication to an authentication actor.

@@ -1,10 +1,6 @@
 Dispatchers (Java)
 ==================
 
-.. sidebar:: Contents
-
-   .. contents:: :local:
-   
 Module stability: **SOLID**
 
 The Dispatcher is an important piece that allows you to configure the right semantics and parameters for optimal performance, throughput and scalability. Different Actors have different needs.

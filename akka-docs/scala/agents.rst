@@ -1,10 +1,6 @@
 Agents (Scala)
 ==============
 
-.. sidebar:: Contents
-
-   .. contents:: :local:
-   
 Module stability: **SOLID**
 
 Agents in Akka were inspired by `agents in Clojure <http://clojure.org/agents>`_.

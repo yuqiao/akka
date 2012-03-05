@@ -23,13 +23,13 @@ Akka uses `Git`_ and is hosted at `Github`_.
 You first need Git installed on your machine. You can then clone the source
 repositories:
 
-- Akka repository from http://github.com/jboner/akka
-- Akka Modules repository from http://github.com/jboner/akka-modules
+- Akka repository from http://github.com/akka/akka
+- Akka Modules repository from http://github.com/akka/akka-modules
 
 For example::
 
-   git clone git://github.com/jboner/akka.git
-   git clone git://github.com/jboner/akka-modules.git
+   git clone git://github.com/akka/akka.git
+   git clone git://github.com/akka/akka-modules.git
 
 If you have already cloned the repositories previously then you can update the
 code with ``git pull``::

@@ -1,10 +1,6 @@
 Getting Started
 ===============
 
-.. sidebar:: Contents
-
-   .. contents:: :local:
-
 The best way to start learning Akka is to try the Getting Started Tutorial, which comes in several flavours
 depending on you development environment preferences:
 
@@ -161,8 +157,8 @@ Build from sources
 
 Akka uses Git and is hosted at `Github <http://github.com>`_.
 
-* Akka: clone the Akka repository from `<http://github.com/jboner/akka>`_
-* Akka Modules: clone the Akka Modules repository from `<http://github.com/jboner/akka-modules>`_
+* Akka: clone the Akka repository from `<http://github.com/akka/akka>`_
+* Akka Modules: clone the Akka Modules repository from `<http://github.com/akka/akka-modules>`_
 
 Continue reading the page on :ref:`building-akka`
 

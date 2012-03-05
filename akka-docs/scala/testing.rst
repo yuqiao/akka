@@ -8,10 +8,6 @@ Testing Actor Systems
 
    testkit-example
 
-.. sidebar:: Contents
-
-   .. contents:: :local:
-
 .. module:: akka-testkit
    :synopsis: Tools for Testing Actor Systems
 .. moduleauthor:: Roland Kuhn

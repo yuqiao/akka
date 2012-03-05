@@ -32,4 +32,4 @@ Benchmarking Akka against:
 
 - Scala Library Actors
 - Raw Java concurrency
-- Jetlang (Java actors lib) `<http://github.com/jboner/akka-bench>`_
+- Jetlang (Java actors lib) `<http://github.com/akka/akka-bench>`_

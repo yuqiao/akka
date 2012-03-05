@@ -1,17 +1,13 @@
 Remote Actors (Scala)
 =====================
 
-.. sidebar:: Contents
-
-   .. contents:: :local:
-   
 Module stability: **SOLID**
 
 Akka supports starting and interacting with Actors and Typed Actors on remote nodes using a very efficient and scalable NIO implementation built upon `JBoss Netty <http://jboss.org/netty>`_ and `Google Protocol Buffers <http://code.google.com/p/protobuf/>`_ .
 
 The usage is completely transparent with local actors, both in regards to sending messages and error handling and propagation as well as supervision, linking and restarts. You can send references to other Actors as part of the message.
 
-You can find a runnable sample `here <http://github.com/jboner/akka/tree/master/akka-samples/akka-sample-remote/>`__.
+You can find a runnable sample `here <http://github.com/akka/akka/tree/master/akka-samples/akka-sample-remote/>`__.
 
 Starting up the remote service
 ------------------------------
@@ -362,7 +358,7 @@ All of these also have variations where you can pass in an explicit 'ClassLoader
 Running sample
 ^^^^^^^^^^^^^^
 
-Here is a complete running sample (also available `here <http://github.com/jboner/akka/blob/master/akka-core/src/test/scala/ServerInitiatedRemoteActorSample.scala>`_):
+Here is a complete running sample (also available `here <http://github.com/akka/akka/blob/master/akka-core/src/test/scala/ServerInitiatedRemoteActorSample.scala>`_):
 
 Paste in the code below into two sbt concole shells. Then run:
 

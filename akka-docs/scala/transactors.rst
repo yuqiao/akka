@@ -3,10 +3,6 @@
 Transactors (Scala)
 ===================
 
-.. sidebar:: Contents
-
-   .. contents:: :local:
-
 Module stability: **SOLID**
 
 Why Transactors?

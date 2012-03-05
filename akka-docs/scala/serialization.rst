@@ -3,10 +3,6 @@
 Serialization (Scala)
 =====================
 
-.. sidebar:: Contents
-
-   .. contents:: :local:
-
 Module stability: **SOLID**
 
 Serialization of ActorRef

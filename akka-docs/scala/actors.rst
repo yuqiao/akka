@@ -3,10 +3,6 @@
 Actors (Scala)
 ==============
 
-.. sidebar:: Contents
-
-   .. contents:: :local:
-
 Module stability: **SOLID**
 
 The `Actor Model <http://en.wikipedia.org/wiki/Actor_model>`_ provides a higher level of abstraction for writing concurrent and distributed systems. It alleviates the developer from having to deal with explicit locking and thread management, making it easier to write correct concurrent and parallel systems. Actors were defined in the 1973 paper by Carl Hewitt but have been popularized by the Erlang language, and used for example at Ericsson with great success to build highly concurrent and reliable telecom systems.
@@ -570,7 +566,7 @@ To hotswap the Actor using ``become``:
     case "bar" => become(happy)
   }
 
-The ``become`` method is useful for many different things, but a particular nice example of it is in example where it is used to implement a Finite State Machine (FSM): `Dining Hakkers <http://github.com/jboner/akka/blob/master/akka-samples/akka-sample-fsm/src/main/scala/DiningHakkersOnBecome.scala>`_
+The ``become`` method is useful for many different things, but a particular nice example of it is in example where it is used to implement a Finite State Machine (FSM): `Dining Hakkers <http://github.com/akka/akka/blob/master/akka-samples/akka-sample-fsm/src/main/scala/DiningHakkersOnBecome.scala>`_
 
 Here is another little cute example of ``become`` and ``unbecome`` in action:
 

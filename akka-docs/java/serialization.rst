@@ -3,10 +3,6 @@
 Serialization (Java)
 ====================
 
-.. sidebar:: Contents
-
-   .. contents:: :local:
-
 Akka serialization module has been documented extensively under the :ref:`serialization-scala` section. In this section we will point out the different APIs that are available in Akka for Java based serialization of ActorRefs. The Scala APIs of ActorSerialization has implicit Format objects that set up the type class based serialization. In the Java API, the Format objects need to be specified explicitly.
 
 Serialization of a Stateless Actor

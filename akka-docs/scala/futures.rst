@@ -3,10 +3,6 @@
 Futures (Scala)
 ===============
 
-.. sidebar:: Contents
-
-   .. contents:: :local:
-
 Introduction
 ------------
 

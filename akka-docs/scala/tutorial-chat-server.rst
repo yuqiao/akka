@@ -1,14 +1,10 @@
 Tutorial: write a scalable, fault-tolerant, network chat server and client (Scala)
 =============================================================================================
 
-.. sidebar:: Contents
-
-   .. contents:: :local:
-   
 Introduction
 ------------
 
-`Tutorial source code <https://github.com/jboner/akka/blob/master/akka-samples/akka-sample-chat/src/main/scala/ChatServer.scala>`_.
+`Tutorial source code <https://github.com/akka/akka/blob/master/akka-samples/akka-sample-chat/src/main/scala/ChatServer.scala>`_.
 
 Writing correct concurrent, fault-tolerant and scalable applications is too hard. Most of the time it's because we are using the wrong tools and the wrong level of abstraction.
 
@@ -523,14 +519,14 @@ Sample code
 
 All this code is available as part of the Akka distribution. It resides in the './akka-samples/akka-sample-chat' module and have a 'README' file explaining how to run it.
 
-Or if you rather browse it `online <https://github.com/jboner/akka/blob/master/akka-samples/akka-sample-chat/>`_.
+Or if you rather browse it `online <https://github.com/akka/akka/blob/master/akka-samples/akka-sample-chat/>`_.
 
 Run it
 ------
 
 Download and build Akka
 
-#. Check out Akka from `<http://github.com/jboner/akka>`_
+#. Check out Akka from `<http://github.com/akka/akka>`_
 #. Set 'AKKA_HOME' environment variable to the root of the Akka distribution.
 #. Open up a shell and step into the Akka distribution root folder.
 #. Build Akka by invoking:

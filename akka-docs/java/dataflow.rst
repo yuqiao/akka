@@ -1,10 +1,6 @@
 Dataflow Concurrency (Java)
 ===========================
 
-.. sidebar:: Contents
-
-   .. contents:: :local:
-
 Introduction
 ------------
 

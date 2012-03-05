@@ -68,7 +68,7 @@ Akka HTTP
 - Jersey-server is now a "provided" dependency for ``akka-http``, so you'll need
   to add the dependency to your project, it's built against Jersey 1.3
 
-.. _ListWriter: https://github.com/jboner/akka/blob/v1.0/akka-http/src/main/scala/akka/http/ListWriter.scala
+.. _ListWriter: https://github.com/akka/akka/blob/v1.0/akka-http/src/main/scala/akka/http/ListWriter.scala
 
 
 Akka Testkit

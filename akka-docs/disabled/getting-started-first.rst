@@ -28,8 +28,8 @@ Tutorial source code
 
 If you want don't want to type in the code and/or set up an SBT project then you can check out the full tutorial from the Akka GitHub repository. It is in the ``akka-tutorials/akka-tutorial-first`` module. You can also browse it online `here`__, with the actual source code `here`__.
 
-__ https://github.com/jboner/akka/tree/master/akka-tutorials/akka-tutorial-first
-__ https://github.com/jboner/akka/blob/master/akka-tutorials/akka-tutorial-first/src/main/scala/Pi.scala
+__ https://github.com/akka/akka/tree/master/akka-tutorials/akka-tutorial-first
+__ https://github.com/akka/akka/blob/master/akka-tutorials/akka-tutorial-first/src/main/scala/Pi.scala
 
 Prerequisites
 -------------
