@@ -28,17 +28,17 @@ Akka uses Git and is hosted at `Github <http://github.com>`_.
 * Akka Modules: clone the Akka Modules repository from `<http://github.com/akka/akka-modules>`_
 
 
-`Maven Repository <http://akka.io/repository/>`_
-================================================
+`Maven Repository <http://repo.akka.io/releases/>`_
+===================================================
 
-The Akka Maven repository can be found at `<http://akka.io/repository>`_. 
+The Akka Maven repository can be found at `<http://repo.akka.io/releases>`_. 
 
 Typesafe provides `<http://repo.typesafe.com/typesafe/releases/>`_ that proxies several other repositories, including akka.io.
 It is convenient to use the Typesafe repository, since it includes all external dependencies of Akka. 
 It is a "best-effort" service, and if it is unavailable you may need to use the underlying repositories
 directly.  
 
-* http://akka.io/repository
+* http://repo.akka.io/releases
 * http://repository.codehaus.org
 * http://guiceyfruit.googlecode.com/svn/repo/releases/
 * http://repository.jboss.org/nexus/content/groups/public/

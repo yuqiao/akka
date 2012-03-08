@@ -429,18 +429,18 @@ http://doc.akka.io/comet
 Module akka-spring
 ------------------
 
-The Akka XML schema URI has changed to http://akka.io/schema/akka
+The Akka XML schema URI has changed to http://repo.akka.io/schema/akka
 
 .. code-block:: xml
 
   <beans xmlns="http://www.springframework.org/schema/beans"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns:akka="http://akka.io/schema/akka"
+         xmlns:akka="http://repo.akka.io/schema/akka"
          xsi:schemaLocation="
   http://www.springframework.org/schema/beans
   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-  http://akka.io/schema/akka
-  http://akka.io/akka-1.0.xsd">
+  http://repo.akka.io/schema/akka
+  http://repo.akka.io/akka-1.0.xsd">
 
   <!-- ... -->
 

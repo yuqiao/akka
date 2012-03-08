@@ -143,7 +143,7 @@ To use the plugin, first add a plugin definition to your SBT project by creating
     import sbt._
 
     class Plugins(info: ProjectInfo) extends PluginDefinition(info) {
-      val akkaRepo   = "Akka Repo" at "http://akka.io/repository"
+      val akkaRepo   = "Akka Repo" at "http://repo.akka.io/releases"
       val akkaPlugin = "se.scalablesolutions.akka" % "akka-sbt-plugin" % "1.3.1"
     }
 
@@ -152,7 +152,7 @@ Now we need to create a project definition using our Akka SBT plugin. We do that
     import sbt._
 
     class TutorialOneProject(info: ProjectInfo) extends DefaultProject(info) with AkkaProject {
-      val akkaRepo = "Akka Repo" at "http://akka.io/repository"
+      val akkaRepo = "Akka Repo" at "http://repo.akka.io/releases"
     }
 
 The magic is in mixing in the ``AkkaProject`` trait.

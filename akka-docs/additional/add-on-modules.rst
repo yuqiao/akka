@@ -13,4 +13,4 @@ Akka Modules consist of add-on modules outside the core of Akka:
 - ``akka-spring-1.3.1.jar`` -- Spring framework integration
 - ``akka-osgi-dependencies-bundle-1.3.1.jar`` -- OSGi support
 
-Documentation for Akka Modules is located `here <http://akka.io/docs/akka-modules/1.3.1/>`_.
+Documentation for Akka Modules is located `here <http://doc.akka.io/docs/akka-modules/1.3.1/>`_.

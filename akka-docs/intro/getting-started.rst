@@ -83,7 +83,7 @@ More information is available in the documentation of the Microkernel in :ref:`a
 Using a build tool
 ------------------
 
-Akka can be used with build tools that support Maven repositories. The Akka Maven repository can be found at `<http://akka.io/repository>`_ 
+Akka can be used with build tools that support Maven repositories. The Akka Maven repository can be found at `<http://repo.akka.io/releases>`_ 
 and Typesafe provides `<http://repo.typesafe.com/typesafe/releases/>`_ that proxies several other repositories, including akka.io.
 
 Using Akka with Maven

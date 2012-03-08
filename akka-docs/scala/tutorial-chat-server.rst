@@ -101,7 +101,7 @@ Add the Akka SBT plugin definition to your SBT project by creating a ``Plugins.s
     import sbt._
 
     class Plugins(info: ProjectInfo) extends PluginDefinition(info) {
-      val akkaRepo   = "Akka Repo" at "http://akka.io/repository"
+      val akkaRepo   = "Akka Repo" at "http://repo.akka.io/releases"
       val akkaPlugin = "se.scalablesolutions.akka" % "akka-sbt-plugin" % "1.3.1"
     }
 
@@ -110,7 +110,7 @@ Create a project definition ``project/build/Project.scala`` file containing::
     import sbt._
 
     class ChatProject(info: ProjectInfo) extends DefaultProject(info) with AkkaProject {
-      val akkaRepo = "Akka Repo" at "http://akka.io/repository"
+      val akkaRepo = "Akka Repo" at "http://repo.akka.io/releases"
       val akkaSTM    = akkaModule("stm")
       val akkaRemote = akkaModule("remote")
     }
