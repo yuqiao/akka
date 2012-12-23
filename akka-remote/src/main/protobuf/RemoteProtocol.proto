@@ -1,17 +1,10 @@
 /**
  * Copyright (C) 2009-2012 Typesafe Inc. <http://www.typesafe.com>
  */
+package RemoteProtocol;
 
-option java_package = "akka.remote";
+option java_package = "akka.remote.protocol";
 option optimize_for = SPEED;
-
-/******************************************
-  Compile with:
-  cd ./akka-remote/src/main/protocol
-  protoc RemoteProtocol.proto --java_out ../java
-  cd ../../../..
-  ./scripts/fix-protobuf.sh
-*******************************************/
 
 message AkkaRemoteProtocol {
   optional bytes payload = 1;
