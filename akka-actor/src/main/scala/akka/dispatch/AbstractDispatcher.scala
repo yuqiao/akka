@@ -102,6 +102,11 @@ private[akka] case class Terminate() extends SystemMessage // sent to self from 
  */
 private[akka] case class Supervise(child: ActorRef, async: Boolean, uid: Int) extends SystemMessage // sent to supervisor ActorRef from ActorCell.start
 /**
+ * Internal use only
+ */
+@SerialVersionUID(2L)
+private[akka] case class Failed(child: ActorRef, cause: Throwable, uid: Int) extends SystemMessage
+/**
  * INTERNAL API
  */
 private[akka] case class ChildTerminated(child: ActorRef) extends SystemMessage // sent to supervisor from ActorCell.doTerminate

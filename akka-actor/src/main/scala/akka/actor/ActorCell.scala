@@ -11,7 +11,7 @@ import scala.concurrent.duration.Duration
 import scala.util.control.NonFatal
 import akka.actor.dungeon.ChildrenContainer
 import akka.actor.dungeon.ChildrenContainer.WaitingForChildren
-import akka.dispatch.{ Watch, Unwatch, Terminate, SystemMessage, Suspend, Supervise, Resume, Recreate, NoMessage, MessageDispatcher, Envelope, Create, ChildTerminated }
+import akka.dispatch.{ Watch, Unwatch, Terminate, SystemMessage, Suspend, Failed, Supervise, Resume, Recreate, NoMessage, MessageDispatcher, Envelope, Create, ChildTerminated }
 import akka.event.Logging.{ LogEvent, Debug, Error }
 import akka.japi.Procedure
 import akka.dispatch.NullMessage
@@ -378,11 +378,13 @@ private[akka] class ActorCell(
           }
         case Terminate()                  ⇒ terminate()
         case Supervise(child, async, uid) ⇒ supervise(child, async, uid)
+        case Failed(child, cause, uid)    ⇒ handleFailure(child, cause, uid)
         case ChildTerminated(child)       ⇒ todo = handleChildTerminated(child)
         case NoMessage                    ⇒ // only here to suppress warning
       }
     } catch {
-      case e @ (_: InterruptedException | NonFatal(_)) ⇒ handleInvokeFailure(Nil, e, "error while processing " + message)
+      case e @ (_: InterruptedException | NonFatal(_)) ⇒
+        handleInvokeFailure(Envelope(message, self, system), Nil, e, "error while processing " + message)
     }
     if (todo != null) systemInvoke(todo)
   }
@@ -397,7 +399,7 @@ private[akka] class ActorCell(
     }
     currentMessage = null // reset current message after successful invocation
   } catch {
-    case e @ (_: InterruptedException | NonFatal(_)) ⇒ handleInvokeFailure(Nil, e, e.getMessage)
+    case e @ (_: InterruptedException | NonFatal(_)) ⇒ handleInvokeFailure(messageHandle, Nil, e, e.getMessage)
   } finally {
     checkReceiveTimeout // Reschedule receive timeout
   }
@@ -408,7 +410,6 @@ private[akka] class ActorCell(
         publish(Debug(self.path.toString, clazz(actor), "received AutoReceiveMessage " + msg))
 
       msg.message match {
-        case Failed(cause, uid) ⇒ handleFailure(sender, cause, uid)
         case t: Terminated ⇒
           if (t.addressTerminated) removeChildWhenToAddressTerminated(t.actor)
           watchedActorTerminated(t)
