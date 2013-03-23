@@ -483,6 +483,15 @@ object AkkaBuild extends Build {
     )
   )
 
+  lazy val benchmarks = Project(
+    id = "akka-benchmarks",
+    base = file("akka-benchmarks"),
+    dependencies = Seq(actor),
+    settings = defaultSettings ++ Seq(
+      publishArtifact in Compile := false
+    )
+  )
+
   // Settings
 
   override lazy val settings =
