@@ -293,41 +293,6 @@ trait SchedulerSpec extends BeforeAndAfterEach with DefaultTimeout with Implicit
   }
 }
 
-class DefaultSchedulerSpec extends AkkaSpec(SchedulerSpec.testConf) with SchedulerSpec {
-  private val cancellables = new ConcurrentLinkedQueue[Cancellable]()
-
-  "A HashedWheelTimer" must {
-
-    "not mess up long timeouts" taggedAs LongRunningTest in {
-      val longish = Long.MaxValue.nanos
-      val barrier = TestLatch()
-      import system.dispatcher
-      val job = system.scheduler.scheduleOnce(longish)(barrier.countDown())
-      intercept[TimeoutException] {
-        // this used to fire after 46 seconds due to wrap-around
-        Await.ready(barrier, 90 seconds)
-      }
-      job.cancel()
-    }
-
-  }
-
-  def collectCancellable(c: Cancellable): Cancellable = {
-    cancellables.add(c)
-    c
-  }
-
-  override def afterEach {
-    while (cancellables.peek() ne null) {
-      for (c ← Option(cancellables.poll())) {
-        c.cancel()
-      }
-    }
-  }
-
-  override def expectedTestDuration = 5 minutes
-}
-
 class LightArrayRevolverSchedulerSpec extends AkkaSpec(SchedulerSpec.testConfRevolver) with SchedulerSpec {
 
   def collectCancellable(c: Cancellable): Cancellable = c
