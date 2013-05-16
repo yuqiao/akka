@@ -82,11 +82,17 @@ private[remote] class DefaultMessageDispatcher(private val system: ExtendedActor
           // if it was originally addressed to us but is in fact remote from our point of view (i.e. remote-deployed)
           r.!(payload)(sender)
         else
-          log.error("dropping message {} for non-local recipient {} arriving at {} inbound addresses are {}",
+          log.error("dropping message {} for non-local recipient {} destined to {} inbound addresses are {}",
             payloadClass, r, recipientAddress, provider.transport.addresses)
 
-      case r ⇒ log.error("dropping message {} for unknown recipient {} arriving at {} inbound addresses are {}",
-        payloadClass, r, recipientAddress, provider.transport.addresses)
+      case r ⇒
+        payload match {
+          case s: SelectionPath ⇒
+            log.error(" ############## dropping message {} for unknown recipient {} destined to {} inbound addresses are {}",
+              s, r, recipientAddress, provider.transport.addresses)
+          case _ ⇒ log.error("dropping message {} for unknown recipient {} destined to {} inbound addresses are {}",
+            payloadClass, r, recipientAddress, provider.transport.addresses)
+        }
 
     }
   }
