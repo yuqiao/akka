@@ -70,6 +70,11 @@ private[remote] class DefaultMessageDispatcher(private val system: ExtendedActor
       case l @ (_: LocalRef | _: RepointableRef) if l.isLocal ⇒
         if (LogReceive) log.debug("received local message {}", msgLog)
         payload match {
+          case s: String if s == "hello1" ⇒
+            log.info("received remote-destined message {}", msgLog)
+          case _ ⇒
+        }
+        payload match {
           case msg: PossiblyHarmful if UntrustedMode ⇒
             log.debug("operating in UntrustedMode, dropping inbound PossiblyHarmful message of type {}", msg.getClass)
           case msg: SystemMessage ⇒ l.sendSystemMessage(msg)
@@ -78,6 +83,11 @@ private[remote] class DefaultMessageDispatcher(private val system: ExtendedActor
 
       case r @ (_: RemoteRef | _: RepointableRef) if !r.isLocal && !UntrustedMode ⇒
         if (LogReceive) log.debug("received remote-destined message {}", msgLog)
+        payload match {
+          case s: String if s == "hello1" ⇒
+            log.info("received remote-destined message {}", msgLog)
+          case _ ⇒
+        }
         if (provider.transport.addresses(recipientAddress))
           // if it was originally addressed to us but is in fact remote from our point of view (i.e. remote-deployed)
           r.!(payload)(sender)
@@ -480,6 +490,13 @@ private[remote] class EndpointWriter(
             if (provider.remoteSettings.LogSend) {
               def msgLog = s"RemoteMessage: [$msg] to [$recipient]<+[${recipient.path}] from [${senderOption.getOrElse(extendedSystem.deadLetters)}]"
               log.debug("sending message {}", msgLog)
+            }
+
+            msg match {
+              case s: String if s == "hello1" ⇒
+                def msgLog = s"RemoteMessage: [$msg] to [$recipient]<+[${recipient.path}] from [${senderOption.getOrElse(extendedSystem.deadLetters)}]"
+                log.info("sending message {}", msgLog)
+              case _ ⇒
             }
 
             ackDeadline = newAckDeadline
