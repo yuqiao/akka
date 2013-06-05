@@ -235,7 +235,6 @@ private[cluster] final class ClusterCoreDaemon(publisher: ActorRef) extends Acto
 
   val statsEnabled = PublishStatsInterval.isFinite
   var gossipStats = GossipStats()
-  var vclockStats = VectorClockStats()
 
   var seedNodeProcess: Option[ActorRef] = None
 
@@ -561,6 +560,7 @@ private[cluster] final class ClusterCoreDaemon(publisher: ActorRef) extends Acto
    * Receive new gossip.
    */
   def receiveGossip(envelope: GossipEnvelope): Unit = {
+    val t0 = System.nanoTime
     val from = envelope.from
     val remoteGossip = envelope.gossip
     val localGossip = latestGossip
@@ -616,9 +616,6 @@ private[cluster] final class ClusterCoreDaemon(publisher: ActorRef) extends Acto
           case Some(x) if x < 0 ⇒ gossipStats.incrementNewerCount
           case _                ⇒ gossipStats.incrementOlderCount
         }
-        vclockStats = VectorClockStats(
-          versionSize = latestGossip.version.versions.size,
-          latestGossip.members.count(m ⇒ latestGossip.seenByNode(m.uniqueAddress)))
       }
 
       publish(latestGossip)
@@ -629,6 +626,11 @@ private[cluster] final class ClusterCoreDaemon(publisher: ActorRef) extends Acto
         // send back gossip to sender when sender had different view, i.e. merge, or sender had
         // older or sender had newer
         gossipTo(from, sender)
+      }
+
+      if (latestGossip.isLeader(cluster.selfUniqueAddress)) {
+        val d = (System.nanoTime - t0) / 1000
+        log.info("## receiveGossip took {} us", d)
       }
     }
   }
@@ -917,7 +919,16 @@ private[cluster] final class ClusterCoreDaemon(publisher: ActorRef) extends Acto
     if (PublishStatsInterval == Duration.Zero) publishInternalStats()
   }
 
-  def publishInternalStats(): Unit = publisher ! CurrentInternalStats(gossipStats, vclockStats)
+  def publishInternalStats(): Unit = {
+    val t0 = System.nanoTime
+    val seenLatest = latestGossip.members.count(m ⇒ latestGossip.seenByNode(m.uniqueAddress))
+    val vclockStats = VectorClockStats(
+      versionSize = latestGossip.version.versions.size,
+      seenLatest)
+    val d = (System.nanoTime - t0) / 1000
+    log.info("## VectorClockStats took {} us", d)
+    publisher ! CurrentInternalStats(gossipStats, vclockStats)
+  }
 
 }
 
