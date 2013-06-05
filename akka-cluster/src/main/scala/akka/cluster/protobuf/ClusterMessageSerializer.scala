@@ -17,10 +17,23 @@ import java.util.zip.GZIPOutputStream
 import java.util.zip.GZIPInputStream
 import com.google.protobuf.MessageLite
 import scala.annotation.tailrec
+import java.util.concurrent.atomic.AtomicInteger
+import java.io.FileOutputStream
+import java.io.BufferedOutputStream
+import java.io.File
 
 class ClusterMessageSerializer(val system: ExtendedActorSystem) extends Serializer {
 
+  lazy val dir = {
+    val a = system.provider.getDefaultAddress
+    val d = new File("msg_" + a.host.get + "_" + a.port.get)
+    d.mkdir()
+    d
+  }
+
   private final val BufferSize = 1024 * 4
+
+  val n = new AtomicInteger
 
   private val fromBinaryMap = collection.immutable.HashMap[Class[_ <: ClusterMessage], Array[Byte] ⇒ AnyRef](
     classOf[InternalClusterAction.Join] -> {
@@ -108,13 +121,24 @@ class ClusterMessageSerializer(val system: ExtendedActorSystem) extends Serializ
 
   def fromBinary(bytes: Array[Byte],
                  clazz: Option[Class[_]]): AnyRef = {
-    clazz match {
+
+    val result = clazz match {
       case Some(c) ⇒ fromBinaryMap.get(c.asInstanceOf[Class[ClusterMessage]]) match {
         case Some(f) ⇒ f(bytes)
         case None    ⇒ throw new IllegalArgumentException(s"Unimplemented deserialization of message class ${c} in ClusterSerializer")
       }
       case _ ⇒ throw new IllegalArgumentException("Need a cluster message class to be able to deserialize bytes in ClusterSerializer")
     }
+
+    val x = "%08d".format(n.incrementAndGet()) + "_" + result.getClass.getSimpleName
+    val out = new BufferedOutputStream(new FileOutputStream(new File(dir, x)))
+    try {
+      out.write(bytes)
+      out.flush()
+    } finally {
+      out.close()
+    }
+    result
   }
 
   private def addressFromBinary(bytes: Array[Byte]): Address = {
