@@ -102,6 +102,14 @@ Akka comes shipped with a number of default mailbox implementations:
 
   - Bounded: No
 
+* SingleConsumerOnlyUnboundedMailbox
+
+  - Backed by a very efficient Multiple Producer Single Consumer queue, cannot be used with BalancingDispatcher
+
+  - Blocking: No
+
+  - Bounded: No
+
 * BoundedMailbox
 
   - Backed by a ``java.util.concurrent.LinkedBlockingQueue``
